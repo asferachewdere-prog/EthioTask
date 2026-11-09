@@ -1,67 +1,45 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="am">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EthioTask</title>
 <style>
-:root{--blue:#1456c0;--navy:#10264d;--bg:#f3f6fb;--green:#16865b}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:#18243a}
-header{background:linear-gradient(135deg,#123b83,#1976d2);color:white;padding:26px 18px 30px;border-radius:0 0 24px 24px}
-.brand{font-size:25px;font-weight:800}.tag{opacity:.9;margin-top:6px;font-size:14px}
-main{max-width:620px;margin:18px auto;padding:0 14px}
-.welcome,.panel{background:white;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 4px 18px #152b4a0c}
-.welcome h2{margin:0 0 7px;font-size:19px}.muted{color:#68758a;font-size:14px;line-height:1.5}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-button{border:0;border-radius:14px;padding:17px 12px;background:white;box-shadow:0 4px 18px #152b4a0c;color:var(--navy);font-size:15px;font-weight:700;text-align:left;min-height:88px}
-button span{display:block;font-size:24px;margin-bottom:8px}
-button:active{transform:scale(.98)}
-h3{margin:0 0 12px;font-size:17px}
-input,textarea{width:100%;padding:12px;border:1px solid #d7dfeb;border-radius:10px;margin:7px 0 12px;font:inherit}
-.primary{background:var(--blue);color:white;text-align:center;width:100%;min-height:0}
-.secondary{background:#eaf1ff;color:var(--blue);text-align:center;width:100%;min-height:0}
-.hidden{display:none}.notice{padding:12px;background:#fff8e7;border-radius:10px;color:#75551a;font-size:13px;line-height:1.5}
-footer{text-align:center;color:#8190a5;font-size:12px;padding:14px}
+body{font-family:Arial,sans-serif;background:#f1f5f9;margin:0;padding:20px;color:#172554}
+header{background:#087443;color:white;padding:22px;border-radius:14px;text-align:center}
+.card{background:white;padding:18px;margin-top:16px;border-radius:14px;box-shadow:0 2px 8px #ddd}
+button{width:100%;padding:14px;margin-top:10px;border:0;border-radius:9px;background:#087443;color:white;font-size:16px}
+input{width:95%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
 </style>
 </head>
 <body>
-<header><div class="brand">🇪🇹 EthioTask</div><div class="tag">በጋራ እንስራ፤ በግልጽነት እንማር</div></header>
-<main>
-<section class="welcome">
-<h2>እንኳን ወደ EthioTask በደህና መጡ!</h2>
-<div class="muted">ለመቀጠል ከታች ያለውን አገልግሎት ይምረጡ።</div>
-</section>
-<div class="grid">
-<button onclick="show('register')"><span>📝</span>ምዝገባ</button>
-<button onclick="show('tasks')"><span>📋</span>የዕለት ስራ</button>
-<button onclick="show('withdraw')"><span>💳</span>የክፍያ ጥያቄ</button>
-<button onclick="show('info')"><span>ℹ️</span>መረጃ ማግኘት</button>
+<header>
+<h1>🇪🇹 EthioTask</h1>
+<p>በቀላሉ ተመዝገበህ ከስራ ጋር ተቀላቀል</p>
+</header>
+<div class="card">
+<h3>📝 የአባልነት ምዝገባ</h3>
+<input id="name" placeholder="ሙሉ ስም">
+<input id="phone" type="tel" placeholder="ስልክ ቁጥር">
+<button onclick="register()">ምዝገባ ጠይቅ</button>
+<p id="msg"></p>
 </div>
-<section id="register" class="panel hidden">
-<h3>📝 ምዝገባ</h3>
-<label>ሙሉ ስም</label><input id="fullname" placeholder="ስምዎን ያስገቡ">
-<label>የTelegram username (ካለ)</label><input id="username" placeholder="@username">
-<div class="notice">ይህ የማሳያ ምዝገባ ብቻ ነው። መረጃዎ ወደ አስተዳዳሪ አይላክም፤ የደህንነት ግምገማ እና የግላዊነት ማሳወቂያ ከተዘጋጀ በኋላ ይገናኛል።</div>
-</section>
-<section id="tasks" class="panel hidden">
+<div class="card">
 <h3>📋 የዕለት ስራ</h3>
-<p class="muted">አሁን ምንም የተረጋገጠ ስራ አልተጨመረም። አስተዳዳሪው ስራውን፣ መመሪያውን እና የሚከፈለውን መጠን በግልጽ ሲያሳይ እዚህ ይታያል።</p>
-</section>
-<section id="withdraw" class="panel hidden">
-<h3>💳 የክፍያ ጥያቄ</h3>
-<p class="muted">ክፍያ ከመጠየቅ በፊት የተሰራው ስራና ቀሪ ሂሳብ በአስተዳዳሪ መረጋገጥ አለበት። የሐሰት ቀሪ ሂሳብ አይታይም።</p>
-</section>
-<section id="info" class="panel hidden">
-<h3>ℹ️ መረጃ ማግኘት</h3>
-<p class="muted">የእርዳታ እና የአስተዳዳሪ የTelegram መለያ እዚህ ይጨመራል።</p>
-</section>
-<footer>EthioTask • Demo version</footer>
-</main>
+<p>ከተፈቀደልህ በኋላ የሚገኙ ስራዎችን እዚህ ታያለህ።</p>
+</div>
+<div class="card">
+<h3>💰 ክፍያ</h3>
+<p>የክፍያ መረጃ እዚህ ይታያል።</p>
+</div>
 <script>
-function show(id){
-  document.querySelectorAll('main .panel').forEach(p=>p.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-  document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+function register(){
+ const n=document.getElementById('name').value.trim();
+ const p=document.getElementById('phone').value.trim();
+ const m=document.getElementById('msg');
+ if(!n||!p){m.textContent='እባክህ ሙሉ ስምና ስልክ ቁጥር አስገባ።';return;}
+ m.textContent='የምዝገባ ጥያቄህ ተዘጋጅቷል። ለመላክ ከቦት ጋር ማገናኘት ያስፈልጋል።';
 }
 </script>
 </body>
